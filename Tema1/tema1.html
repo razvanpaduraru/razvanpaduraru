@@ -1,69 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Personal CV</title>
-        <meta charset="utf-8">
-        <style>
-            html {
-                height: 100%;
-            }
-            body {
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-                margin: 0;
-            }
 
-            header {
-                background: bisque;
-            }
-
-            footer {
-                background: tomato;
-            }
-
-            aside {
-                background: tomato;
-            }
-
-            main {
-                background: lightgray;
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-            }
-        </style>
-    </head>
-
-    <body>
-        <header>
-            <h1>Paduraru Razvan-Stefan</h1>
-            <h2><em>Personal CV</em></h2>
-        </header>
+<head>
+    <title>Personal CV</title>
+    <meta charset="utf-8">
+    <style>
+        html {
+            height: 100%;
+        }
         
-        <main>
-            <aside>
-                <nav for="content">Cont</nav>
-            </aside>
-            <div id="content">
-                <p>Some content</p>
-                <p>Some content</p>
-                <p>Some content</p>
-                <p>Some content</p>
-                <p>Some content</p>
-            </div>
-            <aside>
-                <nav for="altceva">Altceva</nav>
-            </aside>
-            <div id="altceva">
-                <p>Some content</p>
-                <p>Some content</p>
-                <p>Some content</p>
-                <p>Some content</p>
-                <p>Some content</p>
-            </div>
-        </main>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            margin: 0;
+        }
+        
+        header {
+            background: bisque;
+        }
+        
+        footer {
+            background: lightslategray;
+        }
+        
+        aside {
+            background: lightslategray;
+            width: fit-content;
+        }
+        
+        main {
+            background: lightgray;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+    </style>
+</head>
 
-        <footer>Copyright &copy; 2020</footer>
-    </body>
+<body>
+    <header>
+        <h1>Paduraru Razvan-Stefan</h1>
+        <h2><em>Personal CV</em></h2>
+    </header>
+
+    <main>
+        <aside>
+            <nav for="content">
+                <h2>Important Informations</h2>
+            </nav>
+        </aside>
+        <div id="content">
+            <address>
+                <p>Str. Veteranilor</p>
+                <p>Phone: <a  href="tel:+40728221297">Phone Number</a></p>
+                <p>Email: <a  href="mailto:razvanstefanpaduraru@gmail.com">Email Address</a></p>
+                <p>Website: <a  href="https://github.com/razvanpaduraru">Github</a></p>
+            </address>
+        </div>
+        <aside>
+            <nav for="altceva">
+                <h2>Working experience</h2>
+            </nav>
+        </aside>
+        <div id="altceva">
+            <p>Some content</p>
+            <p>Some content</p>
+            <p>Some content</p>
+            <p>Some content</p>
+            <p>Some content</p>
+        </div>
+    </main>
+
+    <footer>Copyright &copy; 2020</footer>
+</body>
+
 </html>
