@@ -12,21 +12,17 @@
         body {
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: fit-content;
             margin: 0;
+            width: fit-content;
+        }
+        
+        footer {
+            background: bisque;
         }
         
         header {
             background: bisque;
-        }
-        
-        footer {
-            background: lightslategray;
-        }
-        
-        aside {
-            background: lightslategray;
-            width: fit-content;
         }
         
         main {
@@ -45,34 +41,193 @@
     </header>
 
     <main>
-        <aside>
-            <nav for="content">
-                <h2>Important Informations</h2>
-            </nav>
-        </aside>
-        <div id="content">
+        <section>
+            <h2>
+                <mark>Contact Information</mark>
+            </h2>
             <address>
-                <p>Str. Veteranilor</p>
-                <p>Phone: <a  href="tel:+40728221297">Phone Number</a></p>
-                <p>Email: <a  href="mailto:razvanstefanpaduraru@gmail.com">Email Address</a></p>
-                <p>Website: <a  href="https://github.com/razvanpaduraru">Github</a></p>
+                <ul>
+                    <li>Str. Veteranilor</li>
+                    <li>Phone: <a  href="tel:+40728221297">Phone Number</a></li>
+                    <li>Email: <a  href="mailto:razvanstefanpaduraru@gmail.com">Email Address</a></li>
+                    <li>Website: <a  href="https://github.com/razvanpaduraru">Github</a></li>
+                </ul>
             </address>
-        </div>
-        <aside>
-            <nav for="altceva">
-                <h2>Working experience</h2>
-            </nav>
-        </aside>
-        <div id="altceva">
-            <p>Some content</p>
-            <p>Some content</p>
-            <p>Some content</p>
-            <p>Some content</p>
-            <p>Some content</p>
-        </div>
+        </section>
+
+        <section>
+            <h2>
+                <mark>Working experience</mark>
+            </h2>
+            <details>
+                <summary>
+                    <strong>Undergradueted Teaching Assistent @ Politehnica Univeristy of Bucharest</strong>
+                </summary>
+                <ul>
+                    <li>Algorithm Analysis Course C/C++/JAVA</li>
+                    <li>Creating subjects for tests and exams</li>
+                    <li>Updating seminars and proposing the semestrial project</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Autonomuos Driving vs Robotic Control Driving Intern @ EXPLEO GROUP ROMANIA</strong>
+                </summary>
+                <ul>
+                    <li>Implemented a self driving car</li>
+                    <li>Detecting street signs, pedestrians and other cars</li>
+                </ul>
+            </details>
+        </section>
+
+        <section>
+            <h2>
+                <mark>Education</mark>
+            </h2>
+
+            <details>
+                <summary>
+                    <strong>Bachelor of Computer Science and Engineering @ Faculty of Automatic Control and Computers</strong>
+                </summary>
+                <ul>
+                    <li><strong>GPA: 3.67/4</strong></li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Cisco Certified Network Associate @ Cisco's UPB Academy</strong>
+                </summary>
+                <ul>
+                    <li>finished the <strong>CCNA 1-4 Routing and Switching</strong></li>
+                </ul>
+            </details>
+        </section>
+
+        <section>
+            <h2>
+                <mark>Projects</mark>
+            </h2>
+
+            <details>
+                <summary>
+                    <strong>IoT Platform using Microservices</strong>
+                </summary>
+                <ul>
+                    <li>University Project</li>
+                    <li><b>Python</b> application for collecting, storing and viewing numerical data</li>
+                    <li>The structure of the application:</li>
+                    <ul>
+                        <li>The devices connected to Internet</li>
+                        <li>MQTT broker</li>
+                        <li>InfluxDB</li>
+                        <li>Adapter for parsing the recieved messages from IoT devices</li>
+                        <li>Grafana viewing interface</li>
+                    </ul>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Symbols Solving and Type Verification</strong>
+                </summary>
+                <ul>
+                    <li>University Project</li>
+                    <li><b>Java + ANTLR4</b> application</li>
+                    <li>After generating the Abtract Sintax Tree, the program will be able to detect semantic errors</li>
+
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>XML-parser and CAN code generator</strong>
+                </summary>
+                <ul>
+                    <li>Internship Project</li>
+                    <li><b>Python</b> application</li>
+                    <li>Parses the XML file with initialization parameters and then generates its coresponding CAN code</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Crowdsensing</strong>
+                </summary>
+                <ul>
+                    <li>University Project</li>
+                    <li><b>Python</b> application</li>
+                    <li>System that implements simulation of a crowdsensing system for noise mapping</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>MiniCAD</strong>
+                </summary>
+                <ul>
+                    <li>University Project</li>
+                    <li><b>Java</b> application</li>
+                    <li>Program that enables the creation of an image realised from basic geometric shapes</li>
+                </ul>
+            </details>
+        </section>
+
+        <section>
+            <h2>
+                <mark>Extracurricular Activities</mark>
+            </h2>
+
+            <details>
+                <summary>
+                    <strong>Spring up your app</strong>
+                </summary>
+                <ul>
+                    <li>Workshop organized by Orange</li>
+                    <li>Learned to implement a Movie Database using Java, Maven, Git, MongoDB</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Volutneering at LSAC</strong>
+                </summary>
+                <ul>
+                    <li>Faculty's league of students</li>
+                    <li>Organized prom for first year students</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>3DPUB Summer School</strong>
+                </summary>
+                <ul>
+                    <li>Workshop organized by ACS</li>
+                    <li>Learned to implement a basic Unity application</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>
+                    <strong>Erasmus+</strong>
+                </summary>
+                <ul>
+                    <li>Trainer in the "Learning Romanian" activity</li>
+                </ul>
+            </details>
+        </section>
     </main>
 
-    <footer>Copyright &copy; 2020</footer>
+    <footer>
+        <button onclick="myFunction()">Print this page</button>
+        <script>
+            function myFunction() {
+                window.print();
+            }
+        </script>
+    </footer>
 </body>
 
 </html>
