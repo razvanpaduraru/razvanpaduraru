@@ -3,7 +3,7 @@ export function read() {
   return data === null ? [] : JSON.parse(data);
 }
 
-function write(contacts) {
+export function write(contacts) {
   const data = JSON.stringify(contacts);
   window.localStorage.setItem('ds-contacts', data);
 }
