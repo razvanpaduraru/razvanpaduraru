@@ -1,0 +1,19 @@
+#name {
+  border: 0;
+}
+
+#email {
+  border: 0;
+}
+
+#phone {
+  border: 0;
+}
+
+fieldset {
+  border: 0;
+}
+
+.nobull {
+  list-style-type: none;
+}

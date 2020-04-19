@@ -7,20 +7,21 @@
       import { init } from './index.js';
       init();
     </script>
+    <link rel="stylesheet" href="selector.css" />
   </head>
 
   <body>
     <h1>My contacts</h1>
 
     <form id="form-add">
-      <input type="text" name="name" id="name" placeholder="Name" required />
-      <input type="email" name="email" id="email" placeholder="Email" />
-      <input type="tel" name="phone" id="phone" placeholder="Phone" />
+      <input type="text" name="name" id="name_add" placeholder="Name" required />
+      <input type="email" name="email" id="email_add" placeholder="Email" />
+      <input type="tel" name="phone" id="phone_add" placeholder="Phone" />
       <button type="submit">Add</button>
     </form>
 
     <form id="form-delete" hidden>
-      <ul id="list" name="list"></ul>
+      <ul class="nobull" id="list" name="list"></ul>
       <button type="submit" name="delete" disabled>Delete selected contacts</button>
     </form>
   </body>
