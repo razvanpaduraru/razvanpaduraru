@@ -6,6 +6,7 @@ export function init() {
   document.getElementById('form-delete').addEventListener('change', onChangeDelete);
   document.getElementById('form-delete').addEventListener('click', onClickEdit);
   document.getElementById('form-delete').addEventListener('reset', onPressCancel);
+  navigator.serviceWorker.register('sw.js');
   render();
 }
 
