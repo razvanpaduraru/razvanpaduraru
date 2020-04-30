@@ -31,8 +31,7 @@ export class AppContent extends LitElement {
     event.preventDefault();
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd);
-    this.dispatchEvent(new CustomEvent('year-changed', { detail: data }));
-    this.dispatchEvent(new CustomEvent('title-changed', { detail: data }));
+    this.dispatchEvent(new CustomEvent('data-changed', { detail: data }));
   }
 }
 

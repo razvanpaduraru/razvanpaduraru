@@ -21,12 +21,12 @@ export class AppMain extends LitElement {
   render() {
     return html`
       <app-header title=${this.title}></app-header>
-      <app-content @year-changed=${this._onYearChanged}></app-content>
+      <app-content @data-changed=${this._onDataChanged}></app-content>
       <app-footer year=${this.year}></app-footer>
     `;
   }
 
-  _onYearChanged(event) {
+  _onDataChanged(event) {
     console.log(event.detail.title);
     if (event.detail.title !== '') {
       this.title = event.detail.title;
