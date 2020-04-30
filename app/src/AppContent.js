@@ -17,14 +17,20 @@ export class AppContent extends LitElement {
   }
   render() {
     return html`
-      <form>
+      <form @submit=${this._onSubmit}>
         <label>
-          Please choose a year:
-          <input type="number" />
+          Please choose a year: <input type="number" name="year" min="2020" max="2030" />
         </label>
         <button>OK</button>
       </form>
     `;
+  }
+
+  _onSubmit(event) {
+    event.preventDefault();
+    const fd = new FormData(event.target);
+    const data = Object.fromEntries(fd);
+    this.dispatchEvent(new CustomEvent('year-changed', { detail: data }));
   }
 }
 

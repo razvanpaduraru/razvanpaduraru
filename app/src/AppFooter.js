@@ -18,7 +18,7 @@ export class AppFooter extends LitElement {
   render() {
     return html`
       <footer>
-        <h1>Copyright &copy ${this.year}</h1>
+        Copyright &copy ${this.year}
       </footer>
     `;
   }
