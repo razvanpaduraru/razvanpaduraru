@@ -19,7 +19,8 @@ export class AppContent extends LitElement {
     return html`
       <form @submit=${this._onSubmit}>
         <label>
-          Please choose a year: <input type="number" name="year" min="2020" max="2030" />
+          Please choose a year: <input type="number" name="year" min="2020" max="2030" /> Please
+          Please choose a title: <input type="text" name="title" />
         </label>
         <button>OK</button>
       </form>
@@ -31,6 +32,7 @@ export class AppContent extends LitElement {
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd);
     this.dispatchEvent(new CustomEvent('year-changed', { detail: data }));
+    this.dispatchEvent(new CustomEvent('title-changed', { detail: data }));
   }
 }
 
