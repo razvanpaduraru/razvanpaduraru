@@ -7,3 +7,7 @@
     c3: lista de todo-uri
     c4: componenta principala
 */
+
+import { AppMain } from './AppMain';
+
+window.customElements.define('app-main', AppMain);
