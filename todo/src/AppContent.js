@@ -1,6 +1,8 @@
 import { LitElement, html, css } from 'lit-element';
 
 import './AppTodoList';
+import './AppTodoElement';
+import { append } from './storage';
 
 export class AppContent extends LitElement {
   static get styles() {
@@ -12,26 +14,25 @@ export class AppContent extends LitElement {
       }
     `;
   }
-  static get properties() {
-    return {
-      title: { type: String },
-    };
-  }
+
   render() {
     return html`
       <form @submit=${this._onSubmit}>
         <input type="text" name="todo" placeholder="Todo" />
-        <app-todoList></app-todoList>
-        <button>OK</button>
+        <app-todo-list id="list" name="todoList"></app-todo-list>
+        <button>ADD</button>
       </form>
     `;
   }
 
   _onSubmit(event) {
     event.preventDefault();
-    const fd = new FormData(event.target);
-    const data = Object.fromEntries(fd);
-    this.dispatchEvent(new CustomEvent('data-changed', { detail: data }));
+    const form = event.target;
+    const data = new FormData(form);
+    data.set('id', Date.now());
+    const todo = Object.fromEntries(data);
+    append(todo);
+    this.dispatchEvent(new CustomEvent('add-todo'));
   }
 }
 

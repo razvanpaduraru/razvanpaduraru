@@ -1,32 +1,27 @@
 import { LitElement, html } from 'lit-element';
 
 import './AppContent';
+import './AppTodoList';
+import './AppTodoElement';
+import { read } from './storage';
 
 export class AppMain extends LitElement {
-  //   static get properties() {
-  //     return {
-  //       title: { type: Text },
-  //       year: { type: Number },
-  //     };
-  //   }
-
-  //   constructor() {
-  //     super();
-  //     this.year = 2020;
-  //     this.title = 'My app';
-  //   }
-
   render() {
-    return html` <app-content @data-changed=${this._onDataChanged}></app-content> `;
+    return html` <app-content @add-todo=${this._onAddTodo}></app-content> `;
   }
 
-  _onDataChanged(event) {
-    // console.log(event.detail.title);
-    // if (event.detail.title !== '') {
-    //   this.title = event.detail.title;
-    // }
-    // if (event.detail.year !== '') {
-    //   this.year = event.detail.year;
-    // }
+  _onAddTodo(event) {
+    event.preventDefault();
+    console.log();
+    const todos = read();
+    const items = todos.map(
+      element => `
+    <app-todo-element todo=${element.todo} iden=${element.id}></app-todo-element>
+    `
+    );
+    this.shadowRoot
+      .querySelector('app-content')
+      .shadowRoot.querySelector('app-todo-list')
+      .shadowRoot.querySelector('ul').innerHTML = items.join('');
   }
 }

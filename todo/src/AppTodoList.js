@@ -1,30 +1,28 @@
 import { LitElement, html } from 'lit-element';
 
 import './AppTodoElement';
+import { remove } from './storage';
+import './AppContent';
 
 export class AppTodoList extends LitElement {
-  //   static get styles() {
-  //     return css`
-  //       :host {
-  //         display: block;
-  //         padding: 2rem;
-  //         height: 5rem;
-  //       }
-  //     `;
-  //   }
-  //   static get properties() {
-  //     return {
-  //       name: { type: String },
-  //       id: { type: Number },
-  //     };
-  //   }
   render() {
-    return html`
-      <ul>
-        <app-TodoElement name="TodoList"></app-TodoElement>
-      </ul>
-    `;
+    return html` <ul @click=${this._onRemoveTodo}></ul> `;
+  }
+
+  _onRemoveTodo(event) {
+    event.preventDefault();
+    const todo = {
+      todo: event.target.todo,
+      iden: event.target.iden,
+    };
+    const newTodos = remove(todo);
+    const items = newTodos.map(
+      element => `
+    <app-todo-element todo=${element.todo} iden=${element.id}></app-todo-element>
+    `
+    );
+    this.shadowRoot.querySelector('ul').innerHTML = items.join('');
   }
 }
 
-window.customElements.define('app-todoList', AppTodoList);
+window.customElements.define('app-todo-list', AppTodoList);

@@ -1,31 +1,32 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 
 export class AppTodoElement extends LitElement {
-  //   static get styles() {
-  //     return css`
-  //       :host {
-  //         display: block;
-  //         padding: 2rem;
-  //         height: 5rem;
-  //       }
-  //     `;
-  //   }
+  static get styles() {
+    return css`
+      fieldset {
+        border: 0;
+      }
+      #todo {
+        border: 0;
+      }
+    `;
+  }
   static get properties() {
     return {
-      name: { type: String },
-      id: { type: Number },
+      todo: { type: Text },
+      iden: { type: Number },
     };
   }
   render() {
     return html`
       <li>
-        <fieldset name="${'fieldset' + this.id}">
-          <input type="text" id="todo" name="todo" value="${this.name}" readonly />
-          <input type="reset" id="remove" name="remove" value="Remove" />
+        <fieldset>
+          <input type="text" id="todo" value="${this.todo}" readonly />
+          <input type="reset" value="Remove" />
         </fieldset>
       </li>
     `;
   }
 }
 
-window.customElements.define('app-todoElement', AppTodoElement);
+window.customElements.define('app-todo-element', AppTodoElement);
