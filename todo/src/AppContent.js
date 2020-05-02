@@ -31,8 +31,10 @@ export class AppContent extends LitElement {
     const data = new FormData(form);
     data.set('id', Date.now());
     const todo = Object.fromEntries(data);
-    append(todo);
-    this.dispatchEvent(new CustomEvent('add-todo'));
+    if (todo.todo !== '') {
+      append(todo);
+      this.dispatchEvent(new CustomEvent('add-todo'));
+    }
   }
 }
 

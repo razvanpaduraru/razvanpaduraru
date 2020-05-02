@@ -12,11 +12,10 @@ export class AppMain extends LitElement {
 
   _onAddTodo(event) {
     event.preventDefault();
-    console.log();
     const todos = read();
     const items = todos.map(
       element => `
-    <app-todo-element todo=${element.todo} iden=${element.id}></app-todo-element>
+    <app-todo-element todo="${element.todo}" iden=${element.id}></app-todo-element>
     `
     );
     this.shadowRoot
