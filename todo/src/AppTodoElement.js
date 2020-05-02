@@ -22,7 +22,7 @@ export class AppTodoElement extends LitElement {
       <li>
         <fieldset>
           <input type="text" id="todo" value="${this.todo}" readonly />
-          <input type="reset" value="Remove" />
+          <input type="reset" name="remove" id="remove" value="Remove" />
         </fieldset>
       </li>
     `;

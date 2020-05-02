@@ -10,17 +10,20 @@ export class AppTodoList extends LitElement {
 
   _onRemoveTodo(event) {
     event.preventDefault();
-    const todo = {
-      todo: event.target.todo,
-      iden: event.target.iden,
-    };
-    const newTodos = remove(todo);
-    const items = newTodos.map(
-      element => `
-    <app-todo-element todo="${element.todo}" iden=${element.id}></app-todo-element>
-    `
-    );
-    this.shadowRoot.querySelector('ul').innerHTML = items.join('');
+    if (event.path[0].name === 'remove') {
+      const todo = {
+        todo: event.target.todo,
+        iden: event.target.iden,
+      };
+      const newTodos = remove(todo);
+      const items = newTodos.map(
+        element => `
+      <app-todo-element todo="${element.todo}" iden=${element.id}></app-todo-element>
+      `
+      );
+      this.shadowRoot.querySelector('ul').innerHTML = items.join('');
+      this.dispatchEvent(new CustomEvent('remove-todo'));
+    }
   }
 }
 

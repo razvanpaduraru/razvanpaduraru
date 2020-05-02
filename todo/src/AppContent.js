@@ -18,8 +18,9 @@ export class AppContent extends LitElement {
   render() {
     return html`
       <form @submit=${this._onSubmit}>
+        Write here the TODO you want to insert :
         <input type="text" name="todo" placeholder="Todo" />
-        <app-todo-list id="list" name="todoList"></app-todo-list>
+        <app-todo-list id="list" name="todoList" @remove-todo=${this._onRemoveTodo}></app-todo-list>
         <button>ADD</button>
       </form>
     `;
@@ -35,6 +36,10 @@ export class AppContent extends LitElement {
       append(todo);
       this.dispatchEvent(new CustomEvent('add-todo'));
     }
+  }
+
+  _onRemoveTodo() {
+    this.dispatchEvent(new CustomEvent('remove-todo-main'));
   }
 }
 

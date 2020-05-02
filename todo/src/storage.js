@@ -10,8 +10,11 @@ export function write(todos) {
 
 export function append(todo) {
   const todos = read();
-  todos.push(todo);
-  write(todos);
+  const index = todos.findIndex(element => element.todo == todo.todo);
+  if (index === -1) {
+    todos.push(todo);
+    write(todos);
+  }
 }
 
 export function remove(todo) {
