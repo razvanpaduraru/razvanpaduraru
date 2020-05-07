@@ -10,7 +10,7 @@ export function write(todos) {
 
 export function append(todo) {
   const todos = read();
-  const index = todos.findIndex(element => element.todo == todo.todo);
+  const index = todos.findIndex(element => element.todo == todo.todo.trim());
   if (index === -1) {
     todos.push(todo);
     write(todos);

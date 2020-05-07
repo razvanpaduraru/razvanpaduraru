@@ -2,9 +2,15 @@ import { LitElement, html, css } from 'lit-element';
 
 import './AppTodoList';
 import './AppTodoElement';
-import { append } from './storage';
+import { append, read } from './storage';
 
 export class AppContent extends LitElement {
+  static get properties() {
+    return {
+      myTodos: { type: Array },
+    };
+  }
+
   static get styles() {
     return css`
       :host {
@@ -20,7 +26,17 @@ export class AppContent extends LitElement {
       <form @submit=${this._onSubmit}>
         Write here the TODO you want to insert :
         <input type="text" name="todo" placeholder="Todo" />
-        <app-todo-list id="list" name="todoList" @remove-todo=${this._onRemoveTodo}></app-todo-list>
+        <select id="category" name="category">
+          <option value="Important">Important</option>
+          <option value="Not so important">Not so important</option>
+          <option value="Optional">Optional</option>
+        </select>
+        <app-todo-list
+          id="list"
+          .myTodos=${this.myTodos}
+          name="todoList"
+          @remove-todo=${this._onRemoveTodo}
+        ></app-todo-list>
         <button>ADD</button>
       </form>
     `;
@@ -34,6 +50,7 @@ export class AppContent extends LitElement {
     const todo = Object.fromEntries(data);
     if (todo.todo !== '') {
       append(todo);
+      this.myTodos = read();
       this.dispatchEvent(new CustomEvent('add-todo'));
     }
   }
