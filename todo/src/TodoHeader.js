@@ -1,12 +1,23 @@
 import { LitElement, html, css } from 'lit-element';
 
-export class AppHeader extends LitElement {
+export class TodoHeader extends LitElement {
   static get styles() {
     return css`
+      h1 {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+      }
       h2 {
-        background: dodgerblue;
+        background: black;
         color: white;
         width: fit-content;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        padding: 10px 25px;
+      }
+      header {
+        padding: 60px;
+        text-align: center;
+        color: black;
+        font-size: 30px;
       }
     `;
   }
@@ -49,4 +60,4 @@ export class AppHeader extends LitElement {
   }
 }
 
-window.customElements.define('app-header', AppHeader);
+window.customElements.define('todo-header', TodoHeader);

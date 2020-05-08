@@ -1,9 +1,13 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 
-import './AppTodoElement';
+import './TodoElement';
 import { remove } from './storage';
 
-export class AppTodoList extends LitElement {
+export class TodoList extends LitElement {
+  static get styles() {
+    return css``;
+  }
+
   static get properties() {
     return {
       myTodos: { type: Array },
@@ -15,11 +19,11 @@ export class AppTodoList extends LitElement {
         ${this.myTodos.map(
           element =>
             html`<li>
-              <app-todo-element
+              <todo-element
                 .category="${element.category}"
                 .todo="${element.todo}"
                 .iden=${element.id}
-              ></app-todo-element>
+              ></todo-element>
             </li>`
         )}
       </ul>
@@ -39,4 +43,4 @@ export class AppTodoList extends LitElement {
   }
 }
 
-window.customElements.define('app-todo-list', AppTodoList);
+window.customElements.define('todo-list', TodoList);

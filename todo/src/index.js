@@ -8,6 +8,6 @@
     c4: componenta principala
 */
 
-import { AppMain } from './AppMain';
+import { TodoMain } from './TodoMain';
 
-window.customElements.define('app-main', AppMain);
+window.customElements.define('todo-main', TodoMain);
