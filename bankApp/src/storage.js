@@ -17,7 +17,7 @@ export function append(user) {
 export function remove(user) {
   const logged = read();
   const index = logged.findIndex(
-    element => element.username == user.username && element.password == user.password
+    element => element.username == user.username && element.id == user.id
   );
   if (index !== -1) {
     logged.splice(index, 1);

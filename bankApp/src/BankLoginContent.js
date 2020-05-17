@@ -10,18 +10,33 @@ export class BankLoginContent extends LitElement {
         padding: 2rem;
         height: 5rem;
       }
+      .form-log {
+        margin: auto;
+        width: 30%;
+        padding: 10px;
+      }
       input[type='text'] {
-        width: 20%;
-        padding: 12px 20px;
+        width: 100%;
+        padding: 10px 20px;
         margin: 8px 0;
-        font-size: 18px;
+        font-size: 15px;
         background-color: white;
         box-sizing: border-box;
-        border: 3px solid #ccc;
+        border: 3px solid #a52a2a;
         -webkit-transition: 0.5s;
         transition: 0.5s;
         outline: none;
         font-family: 'Comic Sans MS', cursive, sans-serif;
+      }
+
+      ::placeholder {
+        color: #a52a2a;
+      }
+
+      h1 {
+        font-size: 30px;
+        padding-bottom: 20px;
+        color: white;
       }
 
       input[type='text']:focus {
@@ -29,43 +44,64 @@ export class BankLoginContent extends LitElement {
       }
 
       div {
+        margin: 10% auto;
         border-radius: 5px;
-        background-color: #f2f2f2;
+        background: #7f7f7f;
+        background: rgba(0, 0, 0, 0.8);
         padding: 20px;
-        width: 70%;
+        width: 50%;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
 
       label {
-        color: black;
-        font-size: 18px;
+        color: #a52a2a;
+        font-size: 22px;
         padding: 8px;
         font-family: 'Comic Sans MS', cursive, sans-serif;
       }
+
       button {
         background-color: white;
-        color: black;
-        padding: 15px 25px;
-        border: 2px solid black;
+        color: #a52a2a;
+        padding: 12px 22px;
+        border: 2px solid #a52a2a;
         font-family: 'Comic Sans MS', cursive, sans-serif;
       }
       button:hover {
-        background-color: black;
+        background-color: #a52a2a;
         color: white;
       }
     `;
   }
 
+  static get properties() {
+    return {
+      alreadyLogged: { type: String },
+      userDoesNotExist: { type: String },
+    };
+  }
+
+  constructor() {
+    super();
+    this.alreadyLogged = html``;
+    this.userDoesNotExist = html``;
+  }
+
   render() {
     return html`
-      <div>
-        <form @submit=${this._onSubmit}>
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" placeholder="Username" />
-          <br />
-          <label for="password">Password:</label>
-          <input type="text" id="password" name="password" placeholder="Password" />
-          <br />
-          <button>LOGIN</button>
+      <div class="center">
+        <form class="form-log" @submit=${this._onSubmit}>
+          <h1>Login to homebank!</h1>
+          ${this.alreadyLogged} ${this.userDoesNotExist}
+          <p class="clearfix">
+            <input type="text" id="username" name="username" placeholder="Username" />
+          </p>
+          <p class="clearfix">
+            <input type="text" id="password" name="password" placeholder="Password" />
+          </p>
+          <p class="clearfix">
+            <button type="submit" name="submit">LOGIN</button>
+          </p>
         </form>
       </div>
     `;
@@ -96,23 +132,18 @@ export class BankLoginContent extends LitElement {
     if (response.ok) {
       const data = await response.json();
       const toAddData = {
+        id: data.id,
         username: user.username,
-        password: user.password,
-        balance: data.balance,
-        transactionResponseDTOS: data.transactionResponseDTOS,
       };
       const logged = read();
       const index = logged.findIndex(
         element => element.username == data.username && element.password == data.password
       );
       if (index !== -1) {
-        console.log(data);
         this.dispatchEvent(new CustomEvent('already-logged'));
       } else if (data.username == null) {
-        console.log(data);
         this.dispatchEvent(new CustomEvent('not-user'));
       } else {
-        console.log('Success');
         append(toAddData);
         location.replace('user.html');
       }

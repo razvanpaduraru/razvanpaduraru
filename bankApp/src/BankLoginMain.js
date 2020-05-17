@@ -18,12 +18,9 @@ export class BankLoginMain extends LitElement {
 
   render() {
     return html`
-      <header>
-        <h1>Welcome to Homebank application!</h1>
-        ${this.alreadyLogged} ${this.userDoesNotExist}
-      </header>
-
       <bank-login-content
+        .alreadyLogged=${this.alreadyLogged}
+        .userDoesNotExist=${this.userDoesNotExist}
         @already-logged=${this._onAlreadyLogged}
         @not-user=${this._onNotUser}
       ></bank-login-content>
