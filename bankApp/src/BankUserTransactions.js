@@ -70,15 +70,6 @@ export class BankUserTransactions extends LitElement {
     this.pressed = false;
   }
 
-  render() {
-    return html`
-      <div>
-        <button @click=${this._onShowTransactions}>Show transactions</button>
-        ${this.text}
-      </div>
-    `;
-  }
-
   async getTransactions() {
     const response = await fetch('http://localhost:8080/user/' + this.id, {
       method: 'GET',
@@ -95,6 +86,52 @@ export class BankUserTransactions extends LitElement {
     if (response.ok) {
       const data = await response.json();
       this.transactions = data.transactionResponseDTOS;
+    }
+  }
+
+  render() {
+    if (this.pressed === true) {
+      this.getTransactions();
+      return html`
+        <div>
+          <button @click=${this._onShowTransactions}>Show transactions</button>
+          <h2>
+            Your transactions are :
+          </h2>
+          <ul>
+            ${this.transactions.map(
+              transaction =>
+                html` <li>
+                  <fieldset>
+                    <legend>${transaction.nameOfTransaction}</legend>
+                    <input
+                      type="text"
+                      name="sender"
+                      id="sender"
+                      value="${transaction.sender}"
+                      readonly
+                    />
+                    <input
+                      type="text"
+                      name="receiver"
+                      id="receiver"
+                      value="${transaction.receiver}"
+                      readonly
+                    />
+                    <input type="text" name="sum" id="sum" value="${transaction.sum}" readonly />
+                  </fieldset>
+                </li>`
+            )}
+          </ul>
+        </div>
+      `;
+    } else {
+      return html`
+        <div>
+          <button @click=${this._onShowTransactions}>Show transactions</button>
+          ${this.text}
+        </div>
+      `;
     }
   }
 

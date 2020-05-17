@@ -53,12 +53,22 @@ export class BankUserBalance extends LitElement {
   }
 
   render() {
-    return html`
-      <div>
-        <button @click=${this._onShowBalance}>Show balance</button>
-        ${this.text}
-      </div>
-    `;
+    if (this.pressed === true) {
+      this.getBalance();
+      return html`
+        <div>
+          <button @click=${this._onShowBalance}>Show balance</button>
+          <h2>You have an amount of : ${this.balance}.</h2>
+        </div>
+      `;
+    } else {
+      return html`
+        <div>
+          <button @click=${this._onShowBalance}>Show balance</button>
+          ${this.text}
+        </div>
+      `;
+    }
   }
 
   async getBalance() {
