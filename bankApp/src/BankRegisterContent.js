@@ -1,8 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 
-import { read, append } from './storage';
-
-export class BankLoginContent extends LitElement {
+export class BankRegisterContent extends LitElement {
   static get styles() {
     return css`
       :host {
@@ -71,6 +69,7 @@ export class BankLoginContent extends LitElement {
         background-color: #a52a2a;
         color: white;
       }
+
       .clearfix2 {
         margin: 0 100%;
       }
@@ -79,23 +78,21 @@ export class BankLoginContent extends LitElement {
 
   static get properties() {
     return {
-      alreadyLogged: { type: String },
-      userDoesNotExist: { type: String },
+      alreadyExists: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.alreadyLogged = html``;
-    this.userDoesNotExist = html``;
+    this.alreadyExists = html``;
   }
 
   render() {
     return html`
       <div class="center">
         <form class="form-log" @submit=${this._onSubmit}>
-          <h1>Login to homebank!</h1>
-          ${this.alreadyLogged} ${this.userDoesNotExist}
+          <h1>Register</h1>
+          ${this.alreadyExists}
           <p class="clearfix">
             <input type="text" id="username" name="username" placeholder="Username" />
           </p>
@@ -103,10 +100,13 @@ export class BankLoginContent extends LitElement {
             <input type="text" id="password" name="password" placeholder="Password" />
           </p>
           <p class="clearfix">
-            <button type="submit" name="login">LOGIN</button>
+            <input type="text" id="balance" name="balance" placeholder="Balance" />
+          </p>
+          <p class="clearfix">
+            <button type="submit" name="submit">REGISTER</button>
           </p>
           <p class="clearfix2">
-            <button type="submit" name="register">REGISTER</button>
+            <button type="submit" name="back">BACK</button>
           </p>
         </form>
       </div>
@@ -116,19 +116,20 @@ export class BankLoginContent extends LitElement {
   async _onSubmit(event) {
     event.preventDefault();
     console.log(event.path[2].activeElement.name);
-    if (event.path[2].activeElement.name === 'register') {
-      location.replace('register.html');
+    if (event.path[2].activeElement.name === 'back') {
+      location.replace('index.html');
     } else {
       const form = event.target;
       const data = new FormData(form);
       const user = Object.fromEntries(data);
-      console.log(user.username);
-      if (user.username === '' || user.password === '') {
+      console.log(user);
+      if (user.username === '' || user.password === '' || user.balance === '') {
         this.userDoesNotExist = html`<h2 style="color : red">
           Please introduce valid credentials!
         </h2>`;
+        this.dispatchEvent(new CustomEvent('invalid-credentials'));
       } else {
-        const response = await fetch('http://localhost:8080/user/login', {
+        const response = await fetch('http://localhost:8080/user', {
           method: 'POST',
           mode: 'cors',
           cache: 'no-cache',
@@ -142,30 +143,22 @@ export class BankLoginContent extends LitElement {
           body: JSON.stringify({
             username: user.username,
             password: user.password,
+            balance: user.balance,
           }),
         });
         if (response.ok) {
           const data = await response.json();
-          const toAddData = {
-            id: data.id,
-            username: user.username,
-          };
-          const logged = read();
-          const index = logged.findIndex(
-            element => element.username == data.username && element.password == data.password
-          );
-          if (index !== -1) {
-            this.dispatchEvent(new CustomEvent('already-logged'));
-          } else if (data.username == null) {
-            this.dispatchEvent(new CustomEvent('not-user'));
+          console.log(data.username);
+          if (data.username == null) {
+            this.dispatchEvent(new CustomEvent('already-registered'));
           } else {
-            append(toAddData);
-            location.replace('user.html');
+            this.dispatchEvent(new CustomEvent('succ-registered'));
           }
+          console.log('Razspunsul este : ', data);
         }
       }
     }
   }
 }
 
-window.customElements.define('bank-login-content', BankLoginContent);
+window.customElements.define('bank-register-content', BankRegisterContent);

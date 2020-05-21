@@ -23,6 +23,18 @@ export class BankUserTransactions extends LitElement {
         width: 100%;
         border-radius: 10px;
       }
+      label {
+        color: white;
+        padding: 5px;
+        font-size: 20px;
+      }
+      input {
+        background-color: white;
+        color: #a52a2a;
+        padding: 8px;
+        text-align: center;
+        border: 3px solid #a52a2a;
+      }
       ul {
         list-style: none;
       }
@@ -104,6 +116,7 @@ export class BankUserTransactions extends LitElement {
                 html` <li>
                   <fieldset>
                     <legend>${transaction.nameOfTransaction}</legend>
+                    <label for="sender">Sender</label>
                     <input
                       type="text"
                       name="sender"
@@ -111,6 +124,9 @@ export class BankUserTransactions extends LitElement {
                       value="${transaction.sender}"
                       readonly
                     />
+                    <br />
+                    <br />
+                    <label for="receiver">Receiver</label>
                     <input
                       type="text"
                       name="receiver"
@@ -118,6 +134,9 @@ export class BankUserTransactions extends LitElement {
                       value="${transaction.receiver}"
                       readonly
                     />
+                    <br />
+                    <br />
+                    <label for="sum">Transfered sum</label>
                     <input type="text" name="sum" id="sum" value="${transaction.sum}" readonly />
                   </fieldset>
                 </li>`
@@ -139,36 +158,6 @@ export class BankUserTransactions extends LitElement {
     event.preventDefault();
     if (this.pressed === false) {
       this.getTransactions();
-      this.text = html`
-        <h2>
-          Your transactions are :
-        </h2>
-        <ul>
-          ${this.transactions.map(
-            transaction =>
-              html` <li>
-                <fieldset>
-                  <legend>${transaction.nameOfTransaction}</legend>
-                  <input
-                    type="text"
-                    name="sender"
-                    id="sender"
-                    value="${transaction.sender}"
-                    readonly
-                  />
-                  <input
-                    type="text"
-                    name="receiver"
-                    id="receiver"
-                    value="${transaction.receiver}"
-                    readonly
-                  />
-                  <input type="text" name="sum" id="sum" value="${transaction.sum}" readonly />
-                </fieldset>
-              </li>`
-          )}
-        </ul>
-      `;
       this.pressed = true;
     } else {
       this.text = html``;
