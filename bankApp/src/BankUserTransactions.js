@@ -11,6 +11,8 @@ export class BankUserTransactions extends LitElement {
       }
       h2 {
         color: white;
+        width: 100%;
+        margin: 5% -10%;
       }
       legend {
         color: white;
@@ -104,6 +106,16 @@ export class BankUserTransactions extends LitElement {
   render() {
     if (this.pressed === true) {
       this.getTransactions();
+      if (this.transactions.length === 0) {
+        return html`
+          <div>
+            <button @click=${this._onShowTransactions}>Show transactions</button>
+            <h2>
+              You have no transactions!
+            </h2>
+          </div>
+        `;
+      }
       return html`
         <div>
           <button @click=${this._onShowTransactions}>Show transactions</button>

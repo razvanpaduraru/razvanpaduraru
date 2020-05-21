@@ -11,6 +11,7 @@ export class BankUserBalance extends LitElement {
       }
       h2 {
         color: white;
+        margin: 10% -15%;
       }
       button {
         background-color: #a52a2a; /* Green */
