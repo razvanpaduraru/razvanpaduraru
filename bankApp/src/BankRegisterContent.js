@@ -115,14 +115,12 @@ export class BankRegisterContent extends LitElement {
 
   async _onSubmit(event) {
     event.preventDefault();
-    console.log(event.path[2].activeElement.name);
     if (event.path[2].activeElement.name === 'back') {
       this.dispatchEvent(new CustomEvent('back-pressed'));
     } else {
       const form = event.target;
       const data = new FormData(form);
       const user = Object.fromEntries(data);
-      console.log(user);
       if (user.username === '' || user.password === '' || user.balance === '') {
         this.userDoesNotExist = html`<h2 style="color : red">
           Please introduce valid credentials!
@@ -148,13 +146,11 @@ export class BankRegisterContent extends LitElement {
         });
         if (response.ok) {
           const data = await response.json();
-          console.log(data.username);
           if (data.username == null) {
             this.dispatchEvent(new CustomEvent('already-registered'));
           } else {
             this.dispatchEvent(new CustomEvent('succ-registered'));
           }
-          console.log('Razspunsul este : ', data);
         }
       }
     }

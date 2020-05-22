@@ -14,7 +14,6 @@ class BankMain extends LitElement {
   constructor() {
     super();
     this.page = window.location.hash.substring(1);
-    console.log(this.page);
     window.onhashchange = this._onHashChange.bind(this);
   }
 
@@ -22,12 +21,7 @@ class BankMain extends LitElement {
     return html` ${this._pageTemplate} `;
   }
 
-  _onChangeMenu(event) {
-    console.log(2);
-  }
-
   _onHashChange(event) {
-    console.log(event);
     const hash = new URL(event.newURL).hash;
     this.page = hash.substring(1);
   }

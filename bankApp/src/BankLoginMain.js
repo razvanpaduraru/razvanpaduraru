@@ -41,7 +41,6 @@ export class BankLoginMain extends LitElement {
 
   _onAlreadyLogged(event) {
     event.preventDefault();
-    console.log('Aici');
     this.alreadyLogged = html`<h2 style="color : red">User already logged in!</h2>`;
     this.userDoesNotExist = html``;
   }

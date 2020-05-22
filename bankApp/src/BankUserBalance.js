@@ -4,7 +4,7 @@ export class BankUserBalance extends LitElement {
   static get styles() {
     return css`
       div {
-        width: 40%; /*can be in percentage also.*/
+        width: 40%;
         height: auto;
         margin: 0 39%;
         position: relative;
@@ -14,7 +14,7 @@ export class BankUserBalance extends LitElement {
         margin: 10% -15%;
       }
       button {
-        background-color: #a52a2a; /* Green */
+        background-color: #a52a2a;
         border: none;
         color: white;
         padding: 15px 32px;
@@ -24,7 +24,7 @@ export class BankUserBalance extends LitElement {
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
-        -webkit-transition-duration: 0.4s; /* Safari */
+        -webkit-transition-duration: 0.4s;
         transition-duration: 0.4s;
       }
       button {

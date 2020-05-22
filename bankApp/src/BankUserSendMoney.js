@@ -155,11 +155,9 @@ export class BankUserSendMoney extends LitElement {
     const form = event.target;
     const data = new FormData(form);
     const request = Object.fromEntries(data);
-    console.log(request.name);
     if (request.name === '') {
       this.invalidName = html`<h2 style="color: red">Invalid transaction name!</h2>`;
     } else {
-      console.log(request);
       const response = await fetch('http://localhost:8080/user/verifyRecv', {
         method: 'POST',
         mode: 'cors',

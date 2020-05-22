@@ -115,15 +115,12 @@ export class BankLoginContent extends LitElement {
 
   async _onSubmit(event) {
     event.preventDefault();
-    console.log(event.path[2].activeElement.name);
     if (event.path[2].activeElement.name === 'register') {
       this.dispatchEvent(new CustomEvent('register-pressed'));
-      //location.replace('register.html');
     } else {
       const form = event.target;
       const data = new FormData(form);
       const user = Object.fromEntries(data);
-      console.log(user.username);
       if (user.username === '' || user.password === '') {
         this.userDoesNotExist = html`<h2 style="color : red">
           Please introduce valid credentials!
