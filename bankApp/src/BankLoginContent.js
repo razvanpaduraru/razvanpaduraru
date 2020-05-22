@@ -117,7 +117,8 @@ export class BankLoginContent extends LitElement {
     event.preventDefault();
     console.log(event.path[2].activeElement.name);
     if (event.path[2].activeElement.name === 'register') {
-      location.replace('register.html');
+      this.dispatchEvent(new CustomEvent('register-pressed'));
+      //location.replace('register.html');
     } else {
       const form = event.target;
       const data = new FormData(form);
@@ -160,7 +161,7 @@ export class BankLoginContent extends LitElement {
             this.dispatchEvent(new CustomEvent('not-user'));
           } else {
             append(toAddData);
-            location.replace('user.html');
+            this.dispatchEvent(new CustomEvent('login-pressed'));
           }
         }
       }

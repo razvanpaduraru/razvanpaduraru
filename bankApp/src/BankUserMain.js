@@ -146,6 +146,6 @@ export class BankUserMain extends LitElement {
     event.preventDefault();
     remove(this.user);
     this.logged = false;
-    location.replace('index.html');
+    this.dispatchEvent(new CustomEvent('logout-pressed'));
   }
 }

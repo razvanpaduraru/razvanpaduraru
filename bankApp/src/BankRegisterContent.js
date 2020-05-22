@@ -117,7 +117,7 @@ export class BankRegisterContent extends LitElement {
     event.preventDefault();
     console.log(event.path[2].activeElement.name);
     if (event.path[2].activeElement.name === 'back') {
-      location.replace('index.html');
+      this.dispatchEvent(new CustomEvent('back-pressed'));
     } else {
       const form = event.target;
       const data = new FormData(form);

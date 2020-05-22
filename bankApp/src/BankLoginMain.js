@@ -23,8 +23,20 @@ export class BankLoginMain extends LitElement {
         .userDoesNotExist=${this.userDoesNotExist}
         @already-logged=${this._onAlreadyLogged}
         @not-user=${this._onNotUser}
+        @register-pressed=${this._onRegisterPressed}
+        @login-pressed=${this._onLoginPressed}
       ></bank-login-content>
     `;
+  }
+
+  _onLoginPressed(event) {
+    event.preventDefault();
+    this.dispatchEvent(new CustomEvent('login-pressed-main'));
+  }
+
+  _onRegisterPressed(event) {
+    event.preventDefault();
+    this.dispatchEvent(new CustomEvent('register-pressed-main'));
   }
 
   _onAlreadyLogged(event) {

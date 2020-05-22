@@ -21,8 +21,14 @@ export class BankRegisterMain extends LitElement {
         @already-registered=${this._onAlreadyRegistered}
         @succ-registered=${this._succReg}
         @invalid-credentials=${this._invalidCred}
+        @back-pressed=${this._onBackPressed}
       ></bank-register-content>
     `;
+  }
+
+  _onBackPressed(event) {
+    event.preventDefault();
+    this.dispatchEvent(new CustomEvent('back-pressed-main'));
   }
 
   _onAlreadyRegistered(event) {
