@@ -105,12 +105,13 @@ export class BankUserMain extends LitElement {
       const logged = read();
 
       const user = logged[logged.length - 1];
-
-      this.user = user;
-      this.username = user.username;
-      this.id = user.id;
-      this.getBalanceAndTransactions();
-      this.logged = true;
+      if (user !== undefined) {
+        this.user = user;
+        this.username = user.username;
+        this.id = user.id;
+        this.getBalanceAndTransactions();
+        this.logged = true;
+      }
     }
 
     return html`
