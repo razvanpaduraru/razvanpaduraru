@@ -185,7 +185,7 @@ export class BankUserSendMoney extends LitElement {
           this.notEnoughMoney = html``;
           this.invalidSender = html``;
           this.invalidName = html``;
-        } else if (this.balance >= request.sum) {
+        } else if (this.balance >= request.sum && request.sum >= 0) {
           const response = await fetch('http://localhost:8080/user', {
             method: 'PATCH',
             mode: 'cors',
@@ -209,6 +209,11 @@ export class BankUserSendMoney extends LitElement {
           this.invalidSender = html``;
           this.invalidName = html``;
           this.transactionsSucc = html`<h2 style="color: red">Transaction successful!</h2>`;
+        } else if (request.sum <= 0) {
+          this.notEnoughMoney = html`<h2 style="color: red">Not a valid sum!</h2>`;
+          this.invalidSender = html``;
+          this.invalidReciever = html``;
+          this.invalidName = html``;
         } else {
           this.notEnoughMoney = html`<h2 style="color: red">Not enough founds!</h2>`;
           this.invalidSender = html``;
