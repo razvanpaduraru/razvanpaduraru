@@ -14,13 +14,15 @@ class IaHome extends LitElement {
 
   static get properties() {
     return {
-      info: { type: String },
+      usd: { type: String },
+      eur: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.info = '';
+    this.eur = '--';
+    this.usd = '--';
   }
 
   render() {
@@ -28,7 +30,8 @@ class IaHome extends LitElement {
       <section>
         <h1>Current bitcoin course</h1>
         <p>
-          <strong>${this.info}</strong>
+          <strong>EURO : ${this.eur}</strong><br />
+          <strong>USD : ${this.usd}</strong>
         </p>
       </section>
 
@@ -43,9 +46,8 @@ class IaHome extends LitElement {
     const base = 'https://api.coindesk.com/v1/bpi/currentprice/EUR.json';
     const result = await fetch(`${base}`);
     const data = await result.json();
-    const usd = data.bpi.USD.rate;
-    const eur = data.bpi.EUR.rate;
-    this.info = 'Bitcoin is ' + `${eur}` + ' EURO and ' + `${usd}` + ' USD';
+    this.usd = data.bpi.USD.rate;
+    this.eur = data.bpi.EUR.rate;
   }
 }
 

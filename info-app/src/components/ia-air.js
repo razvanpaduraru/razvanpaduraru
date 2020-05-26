@@ -14,13 +14,15 @@ class IaAir extends LitElement {
 
   static get properties() {
     return {
-      info: { type: String },
+      pressure: { type: String },
+      humidity: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.info = '--';
+    this.pressure = '--';
+    this.humidity = '--';
   }
 
   render() {
@@ -28,7 +30,8 @@ class IaAir extends LitElement {
       <section>
         <h1>Informations</h1>
         <p>
-          <strong>${this.info}</strong>
+          <strong>Air pressure is : ${this.pressure} hPa </strong><br />
+          <strong>Air humidity is : ${this.humidity} %</strong>
         </p>
       </section>
       <p>
@@ -58,10 +61,8 @@ class IaAir extends LitElement {
     const end = '&APPID=e03c3b32cfb5a6f7069f2ef29237d87e&units=metric';
     const weather = await fetch(`${base2}${city}${end}`);
     const dataW = await weather.json();
-    const humidity = dataW.main.humidity;
-    const pressure = dataW.main.pressure;
-
-    this.info = 'Air pressure is : ' + `${pressure}` + ' and humidity is : ' + `${humidity}`;
+    this.humidity = dataW.main.humidity;
+    this.pressure = dataW.main.pressure;
   }
 
   _onGeoError() {
