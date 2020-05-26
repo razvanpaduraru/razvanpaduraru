@@ -1,9 +1,9 @@
 import { LitElement, html, css } from 'lit-element';
 
-// import './ia-home';
+import './ia-home';
 import './ia-location';
 import './ia-time';
-// import './ia-air';
+import './ia-air';
 
 class IaMain extends LitElement {
   static get styles() {
